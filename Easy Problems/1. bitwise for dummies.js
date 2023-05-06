@@ -24,16 +24,31 @@ Sample Output
 1
 -7 */
 
-const readline = require("readline");
+const readline = require('readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 });
 
-rl.question("Enter your input: ", (answer) => {
-  console.log(`You entered: ${answer}`);
-  console.log(typeof answer);
-  // close the readline interface
-  rl.close();
+let numbers;
+
+rl.question('Enter a line of numbers separated by spaces: ', (answer) => {
+  numbers = answer.split(' ').map((num) => {
+    if (Number(num) < 0) {
+      return -Number(num);
+    }
+    return Number(num);
+  });
+  let output_arr=[];
+  output_arr.push(numbers[0] & numbers[1]);
+  output_arr.push(numbers[0] | numbers[1]);
+  output_arr.push(numbers[0] ^ numbers[1]);
+  output_arr.push(numbers[2] << numbers[3]);
+  output_arr.push(numbers[2] >> numbers[3]);
+  output_arr.push(~numbers[4]);
+  output_arr.map((item)=>{
+    console.log(item);
+  })
+  rl.close();  
 });
