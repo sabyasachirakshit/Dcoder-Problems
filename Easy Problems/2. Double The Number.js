@@ -23,28 +23,35 @@ Sample Output
 3
 */
 
-const readline = require('readline');
+const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  terminal: false,
 });
-rl.question('Enter the number of test cases: ', (testCases) => {
+rl.question("Enter the number of test cases: ", (testCases) => {
   for (let i = 0; i < testCases; i++) {
-    rl.question(`Test Case ${i + 1}: Enter two integers separated by a space: `, (input1) => {
-      const [N, K] = input1.split(' ').map(Number);
-      rl.question(`Test Case ${i}: Enter ${N} integers separated by spaces: `, (input2) => {
-        const arr = input2.split(' ').map(Number);
-        let count=0;
-        for(let iter=0;iter<arr.length;iter++){
-            if(arr[iter]*2===K){
+    rl.question(
+      `Test Case ${i + 1}: Enter two integers separated by a space: `,
+      (input1) => {
+        const [N, K] = input1.split(" ").map(Number);
+        rl.question(
+          `Test Case ${i}: Enter ${N} integers separated by spaces: `,
+          (input2) => {
+            const arr = input2.split(" ").map(Number);
+            let count = 0;
+            for (let iter = 0; iter < arr.length; iter++) {
+              if (arr[iter] * 2 === K) {
                 count++;
+              }
             }
-        }
-        console.log(count);
-        if (i === testCases - 1) {
-          rl.close();
-        }
-      });
-    });
+            console.log(count);
+            if (i === testCases - 1) {
+              rl.close();
+            }
+          }
+        );
+      }
+    );
   }
 });
